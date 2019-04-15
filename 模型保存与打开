@@ -1,0 +1,13 @@
+#保存新建模型
+from keras.models import model_from_yaml, load_model
+yaml_string = model.to_yaml()
+with open('F:/traffic-sign.yaml', 'w') as outfile:
+    outfile.write(yaml_string)
+model.save_weights('F:/traffic-sign.h5')
+
+#加载模型
+with open('F:/traffic-sign.yaml') as yamlfile:
+        loaded_model_yaml = yamlfile.read()
+model = model_from_yaml(loaded_model_yaml)
+model.load_weights('F:/traffic-sign.h5')
+ #需将权重载入不同模型时，设置：by_name=True只有名字匹配时才会载入相应权重
